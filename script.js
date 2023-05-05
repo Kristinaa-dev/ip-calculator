@@ -1,53 +1,44 @@
-let containter = document.createElement("div");
-containter.setAttribute("id", "container");
-document.body.appendChild(containter);
-
-
-
-let ip_input = document.createElement("input");
-ip_input.setAttribute("type", "text");
-ip_input.setAttribute("placeholder", "Enter IP address:");
-ip_input.setAttribute("id", "ip_input");
-container.appendChild(ip_input);
-
-let lineBreak = document.createElement("br");
-container.appendChild(lineBreak);
-
-
-let btn1 = document.createElement("button");
-btn1.innerHTML = "Convert";
-container.appendChild(btn1);
-btn1.setAttribute("id", "btn1");
-
-
-btn1.addEventListener("click", function () {
-  let ip = ip_input.value;
-  if (checkIp(ip)) {
-    let bin = decToBin(ip);
-    let result = document.createElement("p");
-    result.setAttribute("id", "bin");
-    result.innerHTML = bin;
-    result.setAttribute("id", "result")
-    container.appendChild(result);
-  } else {
-    alert("Invalid IP address");
-  }
-});
-
-
-
-function checkIp(ip){
-    return (ip != "");
-}
-
-
-
-
 function decToBin(ip){
     let bin = [];
     let dec = ip.split(".");
-    for(let i = 0; i < dec.length; i++){
-        bin.push(parseInt(dec[i]).toString(2));
+    let partBin = "";
+    for(let i = 0; i < 4; i++){
+        partBin = parseInt(dec[i]).toString(2);
+        partBin = "0".repeat(8 - partBin.length) + partBin;
+        bin.push(partBin);
     }
     return bin.join(".");
+
 }
+console.log(decToBin("192.168.1.1"));
+
+
+
+function binToDec(ip){
+    let dec = [];
+    let bin = ip.split(".");
+    for(let i = 0; i < bin.length; i++){
+        dec.push(parseInt(bin[i], 2));
+    }
+    return dec.join(".");
+}
+console.log(binToDec("11000000.10101000.00000001.00000001"));
+
+
+
+function netAddress(ip, nm){
+    let net = [];
+    let binIp = decToBin(ip).split(".");
+    let binNm = "1".repeat(nm) + "0".repeat(32 - nm);
+    console.log(binNm);
+    binNm = binNm.match(/.{1,8}/g);
+    console.log(binNm);
+
+    for(let i = 0; i < 4; i++){
+        net.push(parseInt(binIp[i], 2) & parseInt(binNm[i], 2));
+    }
+    return net.join(".");
+
+}
+console.log(netAddress("192.168.2.10", "23"));
+
