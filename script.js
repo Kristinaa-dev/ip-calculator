@@ -30,15 +30,59 @@ function netAddress(ip, nm){
     let net = [];
     let binIp = decToBin(ip).split(".");
     let binNm = "1".repeat(nm) + "0".repeat(32 - nm);
-    console.log(binNm);
     binNm = binNm.match(/.{1,8}/g);
-    console.log(binNm);
 
     for(let i = 0; i < 4; i++){
         net.push(parseInt(binIp[i], 2) & parseInt(binNm[i], 2));
     }
+
     return net.join(".");
-
 }
-console.log(netAddress("192.168.2.10", "23"));
+console.log(netAddress("192.168.2.10", "8"));
 
+
+
+function broadAddress(ip, nm){
+    let broad = [];
+    let binIp = decToBin(ip).split(".");
+    let binNm = "0".repeat(nm) + "1".repeat(32 - nm);
+    binNm = binNm.match(/.{1,8}/g);
+
+    for(let i = 0; i < 4; i++){
+        broad.push(parseInt(binIp[i], 2) | parseInt(binNm[i], 2));
+    }
+    return broad.join(".");
+}
+console.log(broadAddress("192.168.2.10", "8"));
+
+
+
+function firstHost(ip, nm){
+    let first = [];
+    let binIp = decToBin(ip).split(".");
+    let binNm = "1".repeat(nm) + "0".repeat(32 - nm);
+    binNm = binNm.match(/.{1,8}/g);
+
+    for(let i = 0; i < 4; i++){
+        first.push(parseInt(binIp[i], 2) & parseInt(binNm[i], 2));
+    }
+    first[3] += 1;
+    return first.join(".");
+}
+console.log(firstHost("192.168.2.10", "8"));
+
+
+
+function lastHost(ip, nm){
+    let last = [];
+    let binIp = decToBin(ip).split(".");
+    let binNm = "0".repeat(nm) + "1".repeat(32 - nm);
+    binNm = binNm.match(/.{1,8}/g);
+
+    for(let i = 0; i < 4; i++){
+        last.push(parseInt(binIp[i], 2) | parseInt(binNm[i], 2));
+    }
+    last[3] -= 1;
+    return last.join(".");
+}
+console.log(lastHost("192.168.2.10", "8"));
