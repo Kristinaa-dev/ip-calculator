@@ -1,76 +1,23 @@
-html {
-    width: 100%;
-    height: 100%;
-}
 body {
-    font-family: 'Courier New', Courier, monospace;
-    background: #141516;
-    color: #efe9e7;
+    background: #101010;
+    color: #ececec;
+    font-family: 'Poppins', sans-serif;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
     display: flex;
-    align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    /* overflow: hidden; */
-    
+    align-items: center;
 }
-
-#container{
+.container{
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    /* border: 1px solid white; */
-    border-radius: 15px;
-    padding: 36px;
-    background: #191a1b;
-    box-shadow: 0px 0px 100px rgba(255, 255, 255, 0.05);
-    
+    align-items: center;
+    height: 50vh;
+    width: 60vw;
+    background-color: #161616;
+    border-radius: 80px;
 }
-
-#btn1{
-    font-size: 1.5rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    cursor: pointer;
-    margin: 1.5rem;
-    background: #bc1e4a;
-    border: 1px solid transparent;
-    border-radius: 15px;
-    color: rgba(255, 255, 255, 0.8);
-}
-#btn1:hover{
-    background: #cb1e4f;
-    border: 1px solid #bc1e4a;
-}
-
-
-#ip_input{
-    font-size: 1.5rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    border: 1px solid transparent;
-    border-radius: 15px;
-    background: rgba(255, 255, 255, 0.8);
-}
-#ip_input::placeholder{
-    color: rgba(0, 0, 0, 0.8);
-}
-
-
-#result {
-    font-size: 2rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin: 0px;
-    padding: 0px;
-}
-
 
 
 

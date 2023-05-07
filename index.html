@@ -5,15 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IP calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script>
 
     </script>
     <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        
-    </header>
+    <header></header>
+    <main>
+        <div class="container">
+            <div class="input-fields">
+                <label for="nm">Netmask</label><br>
+                <input type="text" name="nm" id="nm" placeholder="/24 or 255.255.255.0"><br>
+                <label for="ip">IP Address</label><br>
+                <input type="text" name="ip" id="ip" placeholder="192.168.0.1"><br>
+                <input type="button" value="Calculate">                
+            </div>
+
+          <div class="check-boxes">
+            <input type="checkbox" name="bca" id="bca">
+            <label for="bca">Broadcast Address</label><br>
+            <input type="checkbox" name="na" id="na">
+            <label for="na">Network Address</label><br>
+            <input type="checkbox" name="fha" id="fha">
+            <label for="fha">First Host Address</label><br>
+            <input type="checkbox" name="lha" id="lha">
+            <label for="lha">Last Host Address</label><br>
+            <input type="checkbox" name="nha" id="nha">
+            <label for="nha">Number of Hosts</label><br>
+          </div>  
+
+        </div>
+    </main>
 </body>
 </html>

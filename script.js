@@ -85,4 +85,12 @@ function lastHost(ip, nm){
     last[3] -= 1;
     return last.join(".");
 }
-console.log(lastHost("192.168.2.10", "8"));
+console.log(lastHost("192.168.2.10", "8"));                     
+
+
+
+function nHosts(nm){
+    return Math.pow(2, 32 - nm)-2;
+}
+
+console.log(nHosts("24"));          
