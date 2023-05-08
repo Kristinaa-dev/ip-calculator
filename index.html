@@ -19,24 +19,39 @@
     <main>
         <div class="container">
             <div class="input-fields">
-                <label for="nm">Netmask</label><br>
-                <input type="text" name="nm" id="nm" placeholder="/24 or 255.255.255.0"><br>
-                <label for="ip">IP Address</label><br>
-                <input type="text" name="ip" id="ip" placeholder="192.168.0.1"><br>
-                <input type="button" value="Calculate">                
+                <label for="nm" class="label">Netmask:</label><br>
+                <input type="text" name="nm" id="nm" class="inp-box" placeholder="255.255.255.0"><br>
+                <label for="ip" class="label">IP Address:</label><br>
+                <input type="text" name="ip" id="ip" class="inp-box" placeholder="192.168.0.1"><br>
+                <input type="button" class="btn" value="Calculate">                
             </div>
 
           <div class="check-boxes">
-            <input type="checkbox" name="bca" id="bca">
-            <label for="bca">Broadcast Address</label><br>
-            <input type="checkbox" name="na" id="na">
-            <label for="na">Network Address</label><br>
-            <input type="checkbox" name="fha" id="fha">
-            <label for="fha">First Host Address</label><br>
-            <input type="checkbox" name="lha" id="lha">
-            <label for="lha">Last Host Address</label><br>
-            <input type="checkbox" name="nha" id="nha">
-            <label for="nha">Number of Hosts</label><br>
+
+                <label for="bca" class="cb-name">Broadcast Address
+                    <input type="checkbox" name="bca" id="bca" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+
+                <label for="na" class="cb-name">Network Address
+                    <input type="checkbox" name="na" id="na" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+
+                <label for="fha" class="cb-name">First Host Address
+                    <input type="checkbox" name="fha" id="fha" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+
+                <label for="lha" class="cb-name">Last Host Address
+                    <input type="checkbox" name="lha" id="lha" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+
+                <label for="nha" class="cb-name">Number of Hosts
+                    <input type="checkbox" name="nha" id="nha" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
           </div>  
 
         </div>
