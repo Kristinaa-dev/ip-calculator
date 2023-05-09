@@ -58,7 +58,6 @@ body {
     cursor: pointer;
 }
 
-/* Customize the label (the container) */
 .cb-name {
   display: block;
   position: relative;
@@ -73,7 +72,6 @@ body {
   font-weight: 300;
 }
 
-/* Hide the browser's default checkbox */
 .cb-name input {
   position: absolute;
   opacity: 0;
@@ -82,7 +80,6 @@ body {
   width: 0;
 }
 
-/* Create a custom checkbox */
 .checkmark {
   position: absolute;
   top: 0;
@@ -94,29 +91,24 @@ body {
   background-color: #1f1f1f;
 }
 
-/* On mouse-over, add a grey background color */
 .cb-name:hover input ~ .checkmark {
   background-color: #333333;
 }
 
-/* When the checkbox is checked, add a blue background */
 .cb-name input:checked ~ .checkmark {
   background-color: #313a90;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-/* Show the checkmark when checked */
 .cb-name input:checked ~ .checkmark:after {
   display: block;
 }
 
-/* Style the checkmark/indicator */
 .cb-name .checkmark:after {
   left: 9px;
   top: 5px;
