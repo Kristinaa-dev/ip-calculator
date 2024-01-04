@@ -17,44 +17,77 @@
 <body>
     <header></header>
     <main>
-        <div class="container">
-            <div class="input-fields">
-                <label for="nm" class="label">Netmask:</label><br>
-                <input type="text" name="nm" id="nm" class="inp-box" placeholder="255.255.255.0"><br>
-                <label for="ip" class="label">IP Address:</label><br>
-                <input type="text" name="ip" id="ip" class="inp-box" placeholder="192.168.0.1"><br>
-                <input type="button" class="btn" value="Calculate">                
-            </div>
+        <form action="" method="post">
 
-          <div class="check-boxes">
-
-                <label for="bca" class="cb-name">Broadcast Address
-                    <input type="checkbox" name="bca" id="bca" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-
-                <label for="na" class="cb-name">Network Address
-                    <input type="checkbox" name="na" id="na" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-
-                <label for="fha" class="cb-name">First Host Address
-                    <input type="checkbox" name="fha" id="fha" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-
-                <label for="lha" class="cb-name">Last Host Address
-                    <input type="checkbox" name="lha" id="lha" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-
-                <label for="nha" class="cb-name">Number of Hosts
-                    <input type="checkbox" name="nha" id="nha" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-          </div>  
+            <div class="container">
+                <div class="input-fields">
+                    <label for="ip" class="label">IP Address:</label><br>
+                    <input type="text" name="ip" id="ip" class="inp-box" placeholder="x.x.x.x"><br>
+                    <label for="nm" class="label">Netmask or Prefix:</label><br>
+                    <input type="text" name="nm" id="nm" class="inp-box" placeholder="x.x.x.x or /x"><br>
+                    <input type="button" class="btn" value="Calculate" onclick="calculate()">                
+                </div>
+                
+                <div class="check-boxes">
+                    <label for="na" class="cb-name">Network Address
+                        <input type="checkbox" name="na" id="na" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    
+                    <label for="bca" class="cb-name">Broadcast Address
+                        <input type="checkbox" name="bca" id="bca" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    
+                    
+                    <label for="fha" class="cb-name">First Host Address
+                        <input type="checkbox" name="fha" id="fha" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    
+                    <label for="lha" class="cb-name">Last Host Address
+                        <input type="checkbox" name="lha" id="lha" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    
+                    <label for="nha" class="cb-name">Number of Hosts
+                        <input type="checkbox" name="nha" id="nha" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>  
+            </form>
 
         </div>
+
+        <div id="resultModal" class="modal">
+            <span class="close">&times;</span>
+            <div class="modal-content">
+                <h2>Results:</h2>
+                
+                <div class="ipAddress result-display">
+                    <p>Ip address: <span id="ipAddress"></span></p>
+                </div>
+                <div class="netmask result-display">
+                    <p id="nmOrPref">Netmask: <span id="netmask"></span></p>
+                </div>
+                <div class="network result-display">
+                    <p>Network address: <span id="network"></span></p>
+                </div>
+                <div class="broadcast result-display">
+                    <p>Broadcast address: <span id="broadcast"></span></p>
+                </div>
+                <div class="firstHost result-display">
+                    <p>First host address: <span id="firstHost"></span></p>
+                </div>
+                <div class="lastHost result-display">
+                    <p>Last host address: <span id="lastHost"></span></p>
+                </div>
+                <div class="nHosts result-display">
+                    <p>Number of hosts: <span id="nHosts"></span></p>
+                </div>
+            </div>
+        </div>
+
     </main>
 </body>
 </html>

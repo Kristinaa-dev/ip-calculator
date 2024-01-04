@@ -1,7 +1,7 @@
 body {
     background: #101010;
     color: #ececec;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins';
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -19,6 +19,12 @@ body {
     border-radius: 80px;
     gap: 10rem;
     
+}
+input{
+  color: #ecececee;
+  font-size: 1rem;
+  font-family: 'Poppins';
+  font-stretch: expanded;
 }
 .inp-box:focus{
     caret-color: #ececec;
@@ -119,4 +125,38 @@ body {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: hidden; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    backdrop-filter: blur(2px); /* Blur the background */
+  }
+
+.modal-content {
+    background-color: #161616;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    padding-left: 50px;
+    border: 1px solid transparent;
+    border-radius: 80px;
+    width: 30%; /* Could be more or less, depending on screen size */
+}
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    font-size: 25px;
+    color: #ffffff;
+    cursor: pointer;
+}
+.result-display{
+    margin-left: 20px;
 }

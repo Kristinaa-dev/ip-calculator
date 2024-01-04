@@ -1,3 +1,15 @@
+function nmToPrefix(nm){
+    let prefix = 0;
+    let binNm = parseInt(nm).toString(2);
+    for(let i = 0; i < binNm.length; i++){
+        if(binNm[i] == "1"){
+            prefix++;
+        }
+    }
+    return 32-prefix;
+}
+
+
 function decToBin(ip){
     let bin = [];
     let dec = ip.split(".");
@@ -10,7 +22,7 @@ function decToBin(ip){
     return bin.join(".");
 
 }
-console.log(decToBin("192.168.1.1"));
+
 
 
 
@@ -22,14 +34,18 @@ function binToDec(ip){
     }
     return dec.join(".");
 }
-console.log(binToDec("11000000.10101000.00000001.00000001"));
+
 
 
 
 function netAddress(ip, nm){
     let net = [];
     let binIp = decToBin(ip).split(".");
+    
     let binNm = "1".repeat(nm) + "0".repeat(32 - nm);
+    if (binNm.length != 32){
+        console.log("CHOD DO PICE");
+    }
     binNm = binNm.match(/.{1,8}/g);
 
     for(let i = 0; i < 4; i++){
@@ -38,7 +54,6 @@ function netAddress(ip, nm){
 
     return net.join(".");
 }
-console.log(netAddress("192.168.2.10", "8"));
 
 
 
@@ -53,7 +68,7 @@ function broadAddress(ip, nm){
     }
     return broad.join(".");
 }
-console.log(broadAddress("192.168.2.10", "8"));
+
 
 
 
@@ -69,7 +84,6 @@ function firstHost(ip, nm){
     first[3] += 1;
     return first.join(".");
 }
-console.log(firstHost("192.168.2.10", "8"));
 
 
 
@@ -85,7 +99,7 @@ function lastHost(ip, nm){
     last[3] -= 1;
     return last.join(".");
 }
-console.log(lastHost("192.168.2.10", "8"));                     
+              
 
 
 
@@ -93,4 +107,122 @@ function nHosts(nm){
     return Math.pow(2, 32 - nm)-2;
 }
 
-console.log(nHosts("24"));          
+function checkboxCount(){
+    let checkboxes = document.querySelectorAll("input[type='checkbox']");
+    let count = 0;
+    for(let i = 0; i < checkboxes.length; i++){
+        if(checkboxes[i].checked){
+            count++;
+        }
+    }
+    return count;
+}
+
+
+function calculate(){
+    let ip = document.getElementById("ip").value;
+    let nm = document.getElementById("nm").value;
+    if (nm.length <= 3){
+        // console.log("CHOD DO PICE");
+        if (nm[0] == "/"){
+            nm = nm.slice(1);
+            console.log(nm);
+        }
+        console.log(nm);
+        document.getElementById("nmOrPref").innerHTML = "Prefix: <span id='netmask'></span>";
+        // document.getElementById("netmask").innerHTML = nm;
+        nm = parseInt(nm);
+        document.getElementById("netmask").innerHTML = nm;
+    } else {
+        console.log(nm);
+        nm = nmToPrefix(nm);
+        console.log(nm);
+        document.getElementById("netmask").innerHTML = nm;
+    }
+
+
+    document.getElementById("ipAddress").innerHTML = ip;
+
+
+
+    if (document.getElementById("na").checked){
+        document.getElementById("network").innerHTML = netAddress(ip, nm);
+        let elements = document.getElementsByClassName("network");
+        for(let i = 0; i < elements.length; i++){
+            elements[i].style.display = "block";
+        }
+    }
+    else{
+        let elements = document.getElementsByClassName("network");
+        for(let i = 0; i < elements.length; i++){
+            elements[i].style.display = "none";
+        }
+    }
+    if (document.getElementById("bca").checked){
+        document.getElementById("broadcast").innerHTML = broadAddress(ip, nm);
+        let elements = document.getElementsByClassName("broadcast");
+        for(let i = 0; i < elements.length; i++){
+            elements[i].style.display = "block";
+        }
+    }
+    else{
+        let elements = document.getElementsByClassName("broadcast");
+        for(let i = 0; i < elements.length; i++){
+            elements[i].style.display = "none";
+        }
+    }
+    if (document.getElementById("fha").checked){
+        document.getElementById("firstHost").innerHTML = firstHost(ip, nm);
+        let elements = document.getElementsByClassName("firstHost");
+        for(let i = 0; i < elements.length; i++){
+            elements[i].style.display = "block";
+        }
+    }
+    else{
+        let elements = document.getElementsByClassName("firstHost");
+        for(let i = 0; i < elements.length; i++){
+            elements[i].style.display = "none";
+        }
+    }
+    if (document.getElementById("lha").checked){
+        document.getElementById("lastHost").innerHTML = lastHost(ip, nm);
+        let elements = document.getElementsByClassName("lastHost");
+        for(let i = 0; i < elements.length; i++){
+            elements[i].style.display = "block";
+        }
+    }
+    else{
+        let elements = document.getElementsByClassName("lastHost");
+        for(let i = 0; i < elements.length; i++){
+            elements[i].style.display = "none";
+        }
+    }
+    if (document.getElementById("nha").checked){
+        document.getElementById("nHosts").innerHTML = nHosts(nm);
+        let elements = document.getElementsByClassName("nHosts");
+        for(let i = 0; i < elements.length; i++){
+            elements[i].style.display = "block";
+        }
+    }
+    else{
+        let elements = document.getElementsByClassName("nHosts");
+        for(let i = 0; i < elements.length; i++){
+            elements[i].style.display = "none";
+        }
+    }
+    let resultModal = document.getElementById("resultModal");
+    resultModal.style.display = "block";
+
+}
+let closeButton = document.querySelector('.close');
+closeButton.addEventListener('click', function() {
+    let resultModal = document.getElementById('resultModal');
+    resultModal.style.display = 'none';
+});
+
+window.onclick = function(event) {
+    let resultModal = document.getElementById('resultModal');
+    if (event.target == resultModal) {
+        resultModal.style.display = 'none';
+    }
+}
