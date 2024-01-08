@@ -118,19 +118,39 @@ function checkboxCount(){
     return count;
 }
 
+function caller(checkClass, ip, nm){
+    if (checkClass == "network"){
+        return netAddress(ip, nm);
+    }
+    if (checkClass == "broadcast"){
+        return broadAddress(ip, nm);
+    }
+    if (checkClass == "firstHost"){
+        return firstHost(ip, nm);
+    }
+    if (checkClass == "lastHost"){
+        return lastHost(ip, nm);
+    }
+    if (checkClass == "nHosts"){
+        return nHosts(nm);
+    }
+
+    console.log("ERROR");
+    return;
+
+}
+
 
 function calculate(){
     let ip = document.getElementById("ip").value;
     let nm = document.getElementById("nm").value;
     if (nm.length <= 3){
-        // console.log("CHOD DO PICE");
         if (nm[0] == "/"){
             nm = nm.slice(1);
             console.log(nm);
         }
         console.log(nm);
         document.getElementById("nmOrPref").innerHTML = "Prefix: <span id='netmask'></span>";
-        // document.getElementById("netmask").innerHTML = nm;
         nm = parseInt(nm);
         document.getElementById("netmask").innerHTML = nm;
     } else {
@@ -144,72 +164,24 @@ function calculate(){
     document.getElementById("ipAddress").innerHTML = ip;
 
 
+    const checkboxes = ["na", "bca", "fha", "lha", "nha"];
+    const checkClass = ["network", "broadcast", "firstHost", "lastHost", "nHosts"];
 
-    if (document.getElementById("na").checked){
-        document.getElementById("network").innerHTML = netAddress(ip, nm);
-        let elements = document.getElementsByClassName("network");
-        for(let i = 0; i < elements.length; i++){
-            elements[i].style.display = "block";
+    for (let i = 0; i < checkboxes.length; i++){
+        let elements = document.getElementsByClassName(checkClass[i]);
+        if (document.getElementById(checkboxes[i]).checked){
+            document.getElementById(checkClass[i]).innerHTML = caller(checkClass[i], ip, nm)
+            for(let i = 0; i < elements.length; i++){
+                elements[i].style.display = "block";
+            }
+        } else {
+            for(let i = 0; i < elements.length; i++){
+                elements[i].style.display = "none";
+            }
         }
     }
-    else{
-        let elements = document.getElementsByClassName("network");
-        for(let i = 0; i < elements.length; i++){
-            elements[i].style.display = "none";
-        }
-    }
-    if (document.getElementById("bca").checked){
-        document.getElementById("broadcast").innerHTML = broadAddress(ip, nm);
-        let elements = document.getElementsByClassName("broadcast");
-        for(let i = 0; i < elements.length; i++){
-            elements[i].style.display = "block";
-        }
-    }
-    else{
-        let elements = document.getElementsByClassName("broadcast");
-        for(let i = 0; i < elements.length; i++){
-            elements[i].style.display = "none";
-        }
-    }
-    if (document.getElementById("fha").checked){
-        document.getElementById("firstHost").innerHTML = firstHost(ip, nm);
-        let elements = document.getElementsByClassName("firstHost");
-        for(let i = 0; i < elements.length; i++){
-            elements[i].style.display = "block";
-        }
-    }
-    else{
-        let elements = document.getElementsByClassName("firstHost");
-        for(let i = 0; i < elements.length; i++){
-            elements[i].style.display = "none";
-        }
-    }
-    if (document.getElementById("lha").checked){
-        document.getElementById("lastHost").innerHTML = lastHost(ip, nm);
-        let elements = document.getElementsByClassName("lastHost");
-        for(let i = 0; i < elements.length; i++){
-            elements[i].style.display = "block";
-        }
-    }
-    else{
-        let elements = document.getElementsByClassName("lastHost");
-        for(let i = 0; i < elements.length; i++){
-            elements[i].style.display = "none";
-        }
-    }
-    if (document.getElementById("nha").checked){
-        document.getElementById("nHosts").innerHTML = nHosts(nm);
-        let elements = document.getElementsByClassName("nHosts");
-        for(let i = 0; i < elements.length; i++){
-            elements[i].style.display = "block";
-        }
-    }
-    else{
-        let elements = document.getElementsByClassName("nHosts");
-        for(let i = 0; i < elements.length; i++){
-            elements[i].style.display = "none";
-        }
-    }
+
+
     let resultModal = document.getElementById("resultModal");
     resultModal.style.display = "block";
 
